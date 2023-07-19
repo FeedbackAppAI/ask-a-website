@@ -1,62 +1,19 @@
-# MultiPDF Chat App
+Importing Dependencies: The code imports necessary libraries and modules, including Streamlit, dotenv, and various modules from the langchain package.
 
-> You can find the tutorial for this project on [YouTube](https://youtu.be/dXxQ0LR-3Hg).
+Function Definitions:
 
-## Introduction
-------------
-The MultiPDF Chat App is a Python application that allows you to chat with multiple PDF documents. You can ask questions about the PDFs using natural language, and the application will provide relevant responses based on the content of the documents. This app utilizes a language model to generate accurate answers to your queries. Please note that the app will only respond to questions related to the loaded PDFs.
+get_website_text(website_url): Retrieves text content from a given website URL using a sitemap loader.
+get_text_chunks(text): Splits the input text into smaller chunks.
+get_vectorstore(text_chunks): Creates a vector store from the given text chunks.
+get_conversation_chain(vectorstore): Creates a conversation chain using a language model and a vector store.
+handle_userinput(user_question): Handles user input and generates a response using the conversation chain.
+main() Function: The main function of the Streamlit application. It sets up the Streamlit page configuration, defines the UI elements, and handles user interactions.
 
-## How It Works
-------------
+Streamlit UI:
 
-![MultiPDF Chat App Diagram](./docs/PDF-LangChain.jpg)
+The Streamlit application's UI is set up using various Streamlit functions, such as st.header, st.text_input, st.button, and st.spinner.
+The user's question is obtained from the text input box, and the handle_userinput function is called to process the question and generate a response.
+The sidebar contains a text input box to enter the sitemap URL, and a "Process" button to initiate the text processing flow.
+Execution: The if __name__ == '__main__': block ensures that the main() function is executed when the script is run directly.
 
-The application follows these steps to provide responses to your questions:
-
-1. PDF Loading: The app reads multiple PDF documents and extracts their text content.
-
-2. Text Chunking: The extracted text is divided into smaller chunks that can be processed effectively.
-
-3. Language Model: The application utilizes a language model to generate vector representations (embeddings) of the text chunks.
-
-4. Similarity Matching: When you ask a question, the app compares it with the text chunks and identifies the most semantically similar ones.
-
-5. Response Generation: The selected chunks are passed to the language model, which generates a response based on the relevant content of the PDFs.
-
-## Dependencies and Installation
-----------------------------
-To install the MultiPDF Chat App, please follow these steps:
-
-1. Clone the repository to your local machine.
-
-2. Install the required dependencies by running the following command:
-   ```
-   pip install -r requirements.txt
-   ```
-
-3. Obtain an API key from OpenAI and add it to the `.env` file in the project directory.
-
-## Usage
------
-To use the MultiPDF Chat App, follow these steps:
-
-1. Ensure that you have installed the required dependencies and added the OpenAI API key to the `.env` file.
-
-2. Run the `main.py` file using the Streamlit CLI. Execute the following command:
-   ```
-   streamlit run app.py
-   ```
-
-3. The application will launch in your default web browser, displaying the user interface.
-
-4. Load multiple PDF documents into the app by following the provided instructions.
-
-5. Ask questions in natural language about the loaded PDFs using the chat interface.
-
-## Contributing
-------------
-This repository is intended for educational purposes and does not accept further contributions. It serves as supporting material for a YouTube tutorial that demonstrates how to build this project. Feel free to utilize and enhance the app based on your own requirements.
-
-## License
--------
-The MultiPDF Chat App is released under the [MIT License](https://opensource.org/licenses/MIT).
+Note: The code includes commented-out lines and imports that may need to be uncommented or removed depending on the requirements of your project. Additionally, the documentation assumes familiarity with the langchain package, as the details of its usage are not provided.
