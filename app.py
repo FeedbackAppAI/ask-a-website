@@ -9,7 +9,7 @@ from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from htmlTemplates import css, bot_template, user_template
-from langchain.llms import HuggingFaceHub
+#    from langchain.llms import HuggingFaceHub
 
 """    This is the original code from the ask-multiple-pdfs app
 def get_pdf_text(pdf_docs):
@@ -89,12 +89,12 @@ def main():
 
     with st.sidebar:
         st.subheader("Your documents")
-        website_url = st.file_uploader(
+        website_url = st.text_input(
             "Enter your sitemap.xml URL here and click on 'Process'", accept_multiple_files=True)
         if st.button("Process"):
             with st.spinner("Processing"):
                 # get pdf text
-                raw_text = get_pdf_text(pdf_docs)
+                raw_text = get_website_text(pdf_docs)
 
                 # get the text chunks
                 text_chunks = get_text_chunks(raw_text)
