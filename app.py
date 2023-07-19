@@ -1,6 +1,7 @@
 import streamlit as st
 from dotenv import load_dotenv
-from PyPDF2 import PdfReader
+#    from PyPDF2 import PdfReader
+from langchain.document_loaders.sitemap import SitemapLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings, HuggingFaceInstructEmbeddings
 from langchain.vectorstores import FAISS
@@ -10,6 +11,7 @@ from langchain.chains import ConversationalRetrievalChain
 from htmlTemplates import css, bot_template, user_template
 from langchain.llms import HuggingFaceHub
 
+"""    This is the original code from the ask-multiple-pdfs app
 def get_pdf_text(pdf_docs):
     text = ""
     for pdf in pdf_docs:
@@ -17,7 +19,12 @@ def get_pdf_text(pdf_docs):
         for page in pdf_reader.pages:
             text += page.extract_text()
     return text
+"""
 
+def get_website_text(website_url)
+    sitemap_loader = SitemapLoader(web_path=website_url)
+    text = sitemap_loader.load()
+    return text
 
 def get_text_chunks(text):
     text_splitter = CharacterTextSplitter(
@@ -82,8 +89,8 @@ def main():
 
     with st.sidebar:
         st.subheader("Your documents")
-        pdf_docs = st.file_uploader(
-            "Upload your PDFs here and click on 'Process'", accept_multiple_files=True)
+        website_url = st.file_uploader(
+            "Enter your sitemap.xml URL here and click on 'Process'", accept_multiple_files=True)
         if st.button("Process"):
             with st.spinner("Processing"):
                 # get pdf text
